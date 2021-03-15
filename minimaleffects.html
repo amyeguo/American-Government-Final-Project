@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AmGov Final: Campaign Game</title>
+    <link rel="icon" href="flag.png" type="image/png" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      h1{
+        text-align: center;
+      }
+      .calculator{
+        text-align: center;
+        border: 3px solid black;
+        padding:10px;
+      }
+      body {
+        background-color: #90d5ec;
+        background-image: linear-gradient(90deg, #90d5ec 0%, #fc575e 74%);
+      }
+      .calculatebutton{
+        display:block;
+        margin:auto;
+        margin-top:10px;
+        margin-bottom:10px;
+      }
+      em{
+        font-style: normal;
+        font-weight: 900;
+        font-size: 1.2em;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="element">
+      <h1>Surprise!</h1>
+      <p>Campaigns have actually been shown to have minimal effects on election outcomes. However, that doesn't mean they are useless. <br>Often, presidential campaigns are targeted towards swing states due to the electoral college.</p>
+      <button class="show-modal">Election Outcome</button>
+      <div class="modal hidden">
+        <button class="close-modal">x</button>
+        <h1>Alan Abramowitz's 2016 <a
+          href="https://pollyvote.com/en/components/models/retrospective/fundamentals-plus-models/time-for-change-model/"
+          target="_blank"
+          >Time-for-change model</a
+        ></h1>
+      <!--incumbent's net approval rating-->
+      <p> How it works: This model </p>
+      <div class="calculator">
+      <label for="incumbentApprovalValue"
+        >Incumbent President's net approval rating at midyear</label
+      ><br />
+      <input
+        type="range"
+        value="5"
+        min="-30"
+        max="30"
+        name="incumbentApprovalValue"
+        class="incumbentApprovalValue"
+        oninput="this.nextElementSibling.value = this.value"
+      />
+      <output>5</output>
+      <br />
+
+      <!--annualized growthrate of real GDP-->
+      <label for="annualGDPValue"
+        >Annualized growth of real GDP in 2nd quarter of election year</label
+      ><br />
+      <input
+        type="range"
+        value="5"
+        min="-6"
+        max="6"
+        step="0.1"
+        name="annualGDPValue"
+        class="annualGDPValue"
+        oninput="this.nextElementSibling.value = this.value
+      +'%'"
+      />
+      <output>5%</output><br />
+
+      <!--incumbent?-->
+      <label for="incumbentYN"> Presence of first-term incumbent </label>
+      <select class="incumbentYN" name="incumbentYN">
+        <option value="1">Yes</option>
+        <option value="0">No</option>
+      </select>
+      <button onclick="calculateWinner()" class="calculatebutton">Calculate</button>
+      <em><output id="actual">Chance the incumbent wins: </output></em></div>
+    </div>
+      </div>      <div class="overlay hidden"></div>
+
+    </div>
+    <button
+      onclick="location.href='democrat.html'"
+      class="backbutton"
+      type="button"
+    >
+      Back
+    </button>
+    <script>
+      const modal = document.querySelector(".modal");
+      const overlay = document.querySelector(".overlay");
+      const btnCloseModal = document.querySelector(".close-modal");
+      const btnsOpenModal = document.querySelectorAll(".show-modal");
+
+      const openModal = function () {
+        modal.classList.remove("hidden");
+        overlay.classList.remove("hidden");
+      };
+
+      const closeModal = function () {
+        modal.classList.add("hidden");
+        overlay.classList.add("hidden");
+      };
+
+      for (let i = 0; i < btnsOpenModal.length; i++)
+        btnsOpenModal[i].addEventListener("click", openModal);
+
+      btnCloseModal.addEventListener("click", closeModal);
+      overlay.addEventListener("click", closeModal);
+
+      document.addEventListener("keydown", function (e) {
+        // console.log(e.key);
+
+        if (e.key === "Escape" && !modal.classList.contains("hidden")) {
+          closeModal();
+        }
+      });
+    </script>
+     <script>
+      function calculateWinner() {
+        const incumbentApproval = document.querySelector(
+          ".incumbentApprovalValue"
+        ).value;
+        const annualGDP = document.querySelector(".annualGDPValue").value;
+        const incumbent = document.querySelector(".incumbentYN").value;
+        const voteEq =
+          47.26 +
+          0.108 * incumbentApproval +
+          0.543 * annualGDP +
+          4.313 * incumbent;
+        document.querySelector("#actual").value =
+          "Chance the incumbent wins: " + voteEq.toFixed(2) + "%";
+      }
+    </script>
+  </body>
+</html>

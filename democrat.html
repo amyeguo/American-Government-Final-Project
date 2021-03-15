@@ -11,6 +11,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="flag.png" type="image/png" />
     <style>
       body {
         background-color: #90d5ec;
@@ -20,9 +21,20 @@
   </head>
   <body>
     <div class="intro">
-      <h3>Welcome to the Democratic Party</h3>
+      <h1>Welcome to the Democratic Party</h1>
+      <p>Choose the policies you'd like to campaign on:</p>
+      <button onclick="location.href='minimaleffects.html'" type="button">
+        Campaign!
+      </button>
     </div>
 
-    <button onclick="location.href='page1.html'" type="button">Back</button>
+    <button
+      onclick="location.href='page1.html'"
+      class="backbutton"
+      type="button"
+    >
+      Back
+    </button>
+    <script src="script.js"></script>
   </body>
 </html>
