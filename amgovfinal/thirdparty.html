@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AmGov Final: Campaign Game</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="flag.png" type="image/png" />
+    <style>
+      body {
+        background-color: gray;
+        background-image: none;
+      }
+      h1 {
+        text-align: center;
+      }
+      .show-modal {
+        margin: auto;
+        display: block;
+        padding: 15px;
+      }
+      .close-modal {
+        position: absolute;
+        top: 0rem;
+        right: 3rem;
+        background-color: red;
+        padding: 5px;
+        text-align: center;
+      }
+      .hidden {
+        display: none;
+      }
+
+      .modal {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 60%;
+        background-color: white;
+        padding: 6rem;
+        box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);
+        z-index: 10;
+        font-family: Arial, Helvetica, sans-serif;
+        border: 4px solid black;
+      }
+      .modal h1 {
+        font-family: "Press Start 2P", cursive;
+        font-size: 1em;
+      }
+
+      .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 5;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="main">
+      <div class="element">
+        <h1>GAME OVER</h1>
+        <p>
+          Due to the two-party system of the American government, the third
+          party candidate in presidential elections has virtually no chance of
+          winning.
+        </p>
+        <button class="show-modal">Learn More</button>
+        <div class="modal hidden">
+          <button class="close-modal">x</button>
+          <h1>Why the 3rd Party Can't Win</h1>
+          <p>
+            Political parties are not formally a part of American government,
+            but they help organize its activity because it helps voters choose
+            who to vote for Incentives to mobilize voters to win elections
+            Duverger’s Law: Number of effective political parties depends on the
+            electoral system US electoral system defined by first-past-the post
+            rules where the highest polling candidates win, even when there is
+            no majority
+          </p>
+        </div>
+        <div class="overlay hidden"></div>
+        <p>Try running with a different party</p>
+
+        <a href="republican.html"> > Republican Party </a>
+        <br />
+        <a href="democrat.html">> Democratic Party </a>
+        <br />
+      </div>
+    </div>
+
+    <button
+      onclick="location.href='page1.html'"
+      class="backbutton"
+      type="button"
+    >
+      Back
+    </button>
+    <script>
+      const modal = document.querySelector(".modal");
+      const overlay = document.querySelector(".overlay");
+      const btnCloseModal = document.querySelector(".close-modal");
+      const btnsOpenModal = document.querySelectorAll(".show-modal");
+
+      const openModal = function () {
+        modal.classList.remove("hidden");
+        overlay.classList.remove("hidden");
+      };
+
+      const closeModal = function () {
+        modal.classList.add("hidden");
+        overlay.classList.add("hidden");
+      };
+
+      for (let i = 0; i < btnsOpenModal.length; i++)
+        btnsOpenModal[i].addEventListener("click", openModal);
+
+      btnCloseModal.addEventListener("click", closeModal);
+      overlay.addEventListener("click", closeModal);
+
+      document.addEventListener("keydown", function (e) {
+        // console.log(e.key);
+
+        if (e.key === "Escape" && !modal.classList.contains("hidden")) {
+          closeModal();
+        }
+      });
+    </script>
+  </body>
+</html>
