@@ -13,89 +13,192 @@
     />
     <link rel="stylesheet" href="style.css" />
     <style>
-      h1{
+      h1 {
         text-align: center;
       }
-      .calculator{
+      .calculator {
         text-align: center;
         border: 3px solid black;
-        padding:10px;
+        padding: 10px;
       }
       body {
         background-color: #90d5ec;
         background-image: linear-gradient(90deg, #90d5ec 0%, #fc575e 74%);
       }
-      .calculatebutton{
-        display:block;
-        margin:auto;
-        margin-top:10px;
-        margin-bottom:10px;
+      .calculatebutton {
+        display: block;
+        margin: auto;
+        margin-top: 10px;
+        margin-bottom: 10px;
       }
-      em{
+      .modal {
+        width: 60%;
+        height: 500px;
+        overflow-y: scroll;
+      }
+
+      .element {
+        width: 80%;
+        margin-top: 5;
+        height: 600px;
+      }
+      em {
         font-style: normal;
         font-weight: 900;
         font-size: 1.2em;
+      }
+      a.definition {
+        color: black;
+        text-decoration: underline;
+        padding: 0;
+      }
+      @media screen and (max-width: 1000px) {
+        .element {
+          overflow-y: scroll;
+          height: 600px;
+        }
       }
     </style>
   </head>
   <body>
     <div class="element">
-      <h1>Surprise!</h1>
-      <p>Campaigns have actually been shown to have minimal effects on election outcomes. However, that doesn't mean they are useless. <br>Often, presidential campaigns are targeted towards swing states due to the electoral college.</p>
-      <button class="show-modal">Election Outcome</button>
+      <h1>Surprise...</h1>
+      <p>
+        The evidence for Presidential campaigns' influence on election outcomes
+        is weak. Sorry if you spent a lot of time picking your policies!
+      </p>
+      <p>
+        Additionally, according to the Minimal Effects Model, so much is already
+        baked into the Presidential contest that campaigns have little impact on
+        how people vote (<a
+          href="https://www.washingtonpost.com/opinions/do-campaigns-really-change-voters-minds/2012/07/06/gJQAEljyRW_story.html"
+          target="_blank"
+          >source</a
+        >).
+      </p>
+      <p>
+        Most election outcomes are determined by fundamentals such as partisan
+        loyalties, the incumbent president's approval rating, and economic
+        growth. Since you've already won your party's nomination, voters during the
+        November Presidential election assume you're a reasonable candidate.
+      </p>
+      <button class="show-modal">Try a Model Based on Fundamentals</button>
       <div class="modal hidden">
         <button class="close-modal">x</button>
-        <h1>Alan Abramowitz's 2016 <a
-          href="https://pollyvote.com/en/components/models/retrospective/fundamentals-plus-models/time-for-change-model/"
-          target="_blank"
-          >Time-for-change model</a
-        ></h1>
-      <!--incumbent's net approval rating-->
-      <p> How it works: This model </p>
-      <div class="calculator">
-      <label for="incumbentApprovalValue"
-        >Incumbent President's net approval rating at midyear</label
-      ><br />
-      <input
-        type="range"
-        value="5"
-        min="-30"
-        max="30"
-        name="incumbentApprovalValue"
-        class="incumbentApprovalValue"
-        oninput="this.nextElementSibling.value = this.value"
-      />
-      <output>5</output>
-      <br />
+        <h1>
+          Alan Abramowitz's 2016
+          <a
+            href="https://pollyvote.com/en/components/models/retrospective/fundamentals-plus-models/time-for-change-model/"
+            target="_blank"
+            >Time-for-change model</a
+          >
+        </h1>
+        <!--incumbent's net approval rating-->
+        <p>
+          This model predicts the two-party popular vote based on 3 variables:<br>
+          <ol>
+            <li><em>Incumbent President's popularity (NETAPP).</em> Measured by net approval rating at midyear. (Approval rating subtracted by disapproval rating). Positive net approval means their approval rating was higher.</li>
 
-      <!--annualized growthrate of real GDP-->
-      <label for="annualGDPValue"
-        >Annualized growth of real GDP in 2nd quarter of election year</label
-      ><br />
-      <input
-        type="range"
-        value="5"
-        min="-6"
-        max="6"
-        step="0.1"
-        name="annualGDPValue"
-        class="annualGDPValue"
-        oninput="this.nextElementSibling.value = this.value
+            <li><em>The state of the economy (G2GDP).</em> Measured by the annualized growth of real GDP in the 2nd quarter of election year.
+            </li>
+            <li><em>The time the
+              incumbent party has been in office (TERM1INC).</em> Presence (1) or absence (0) of a first-term incumbent in the race</li>
+          </ol>
+          The output of the model produces <em>V</em>, which is the incumbent party's share of the two-party presidential vote, and <em>A</em> is a constant (in 2016, A was 47.26):  
+          <img src="model.png" style="width:100%; border:1px solid black;"><br>Thus, since the model calculates the incumbent party's share of the vote, the incumbent party is often disadvantaged in open-seat elections, since TERM1INC is 0. Hence the name "Time-for-change" 😄.
+<br><br>
+          On average across 6 elections from 1992
+          to 2008, the model missed the final results by only 1.7 percentage
+          points.<br />
+        </p>
+        <div class="calculator">
+          <h3> Try it Out! </h3>
+          <label for="incumbentApprovalValue"
+            >Incumbent President's net approval rating</label
+          ><br />
+          <input
+            type="range"
+            value="5"
+            min="-30"
+            max="30"
+            name="incumbentApprovalValue"
+            class="incumbentApprovalValue"
+            oninput="this.nextElementSibling.value = this.value"
+          />
+          <output>5</output>
+          <br />
+
+          <!--annualized growthrate of real GDP-->
+          <label for="annualGDPValue"
+            >Annualized growth of real GDP in 2nd quarter of election
+            year</label
+          ><br />
+          <input
+            type="range"
+            value="5"
+            min="-6"
+            max="6"
+            step="0.1"
+            name="annualGDPValue"
+            class="annualGDPValue"
+            oninput="this.nextElementSibling.value = this.value
       +'%'"
-      />
-      <output>5%</output><br />
+          />
+          <output>5%</output><br />
 
-      <!--incumbent?-->
-      <label for="incumbentYN"> Presence of first-term incumbent </label>
-      <select class="incumbentYN" name="incumbentYN">
-        <option value="1">Yes</option>
-        <option value="0">No</option>
-      </select>
-      <button onclick="calculateWinner()" class="calculatebutton">Calculate</button>
-      <em><output id="actual">Chance the incumbent wins: </output></em></div>
-    </div>
-      </div>      <div class="overlay hidden"></div>
+          <!--incumbent?-->
+          <label for="incumbentYN"> Presence of first-term incumbent </label>
+          <select class="incumbentYN" name="incumbentYN">
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+          </select>
+          <button onclick="calculateWinner()" class="calculatebutton">
+            Calculate
+          </button>
+          <em><output id="actual">Incumbent share of the two-party presidential vote: </output></em>
+        </div>
+      </div>
+      <div class="overlay hidden"></div>
+      <p>
+        However, this doesn’t necessarily mean the November Presidential
+        campaigns don’t matter. A small percentage of undecided voters in swing
+        states can still shift the outcomes of the election because of the
+        structure of the
 
+        <!--electoral college definition/modal-->
+        <a
+          href="#"
+          class="show-modal definition"
+          style="display: inline; margin: 0"
+          >electoral college.</a
+        >
+      </p>
+      <div class="modal hidden">
+        <button class="close-modal">x</button>
+        <h3>Electoral College</h3>
+        <p>
+          In the US, the Presidency is won through the Electoral College system,
+          which allots electoral votes to the 50 states based on population size.<img
+            src="electoralcollege.png"
+            style="width: 100%"
+          />
+          Most states (48/50) use a winner-take-all approach where the candidate that
+          wins the most votes in that state gets <i> all </i> of its electoral
+          votes. Maine and Nebraska use a district-based system that
+          allows their electoral votes to be split. In order for a candidate to
+          win, they must secure 270 of the 538 electoral votes. Thus, most
+          campaigns focus on battleground states, rather than Democratic or
+          Republican strongholds. Since most states follow a winner-take-all
+          approach, this also means that Presidents can win the electoral
+          college without winning the popular vote, which is the total number of
+          votes cast by voters nationwide.
+        </p>
+      </div>
+      <div class="overlay hidden"></div>
+      <p>
+        Additionally, when there are large discrepancies in campaign funding and resources,
+        campaigns can have a greater effect.
+      </p>
     </div>
     <button
       onclick="location.href='democrat.html'"
@@ -104,37 +207,36 @@
     >
       Back
     </button>
+
     <script>
-      const modal = document.querySelector(".modal");
-      const overlay = document.querySelector(".overlay");
-      const btnCloseModal = document.querySelector(".close-modal");
+      const modals = document.querySelectorAll(".modal");
+
+      const overlays = document.querySelectorAll(".overlay");
+
       const btnsOpenModal = document.querySelectorAll(".show-modal");
 
-      const openModal = function () {
-        modal.classList.remove("hidden");
-        overlay.classList.remove("hidden");
-      };
+      const btnsCloseModal = document.querySelectorAll(".close-modal");
 
-      const closeModal = function () {
-        modal.classList.add("hidden");
-        overlay.classList.add("hidden");
-      };
+      for (let i = 0; i < btnsOpenModal.length; i++) {
+        btnsOpenModal[i].addEventListener("click", () => {
+          modals[i].classList.remove("hidden");
+          overlays[i].classList.remove("hidden");
+        });
+      }
 
-      for (let i = 0; i < btnsOpenModal.length; i++)
-        btnsOpenModal[i].addEventListener("click", openModal);
+      for (let i = 0; i < btnsCloseModal.length; i++) {
+        btnsCloseModal[i].addEventListener("click", () => {
+          modals[i].classList.add("hidden");
+          overlays[i].classList.add("hidden");
+        });
 
-      btnCloseModal.addEventListener("click", closeModal);
-      overlay.addEventListener("click", closeModal);
-
-      document.addEventListener("keydown", function (e) {
-        // console.log(e.key);
-
-        if (e.key === "Escape" && !modal.classList.contains("hidden")) {
-          closeModal();
-        }
-      });
+        overlays[i].addEventListener("click", () => {
+          modals[i].classList.add("hidden");
+          overlays[i].classList.add("hidden");
+        });
+      }
     </script>
-     <script>
+    <script>
       function calculateWinner() {
         const incumbentApproval = document.querySelector(
           ".incumbentApprovalValue"
@@ -147,7 +249,7 @@
           0.543 * annualGDP +
           4.313 * incumbent;
         document.querySelector("#actual").value =
-          "Chance the incumbent wins: " + voteEq.toFixed(2) + "%";
+          "Incumbent share of the two-party presidential vote: " + voteEq.toFixed(2) + "%";
       }
     </script>
   </body>

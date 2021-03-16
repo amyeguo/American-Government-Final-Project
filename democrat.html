@@ -17,12 +17,60 @@
         background-color: #90d5ec;
         background-image: none;
       }
+      h1 {
+        font-size: 1.5em;
+        text-align: center;
+      }
+      .element {
+        width: 70%;
+        height: 700px;
+        margin-top: 0;
+        overflow: scroll;
+      }
+      form {
+        font-family: Arial, Helvetica, sans-serif;
+      }
     </style>
   </head>
   <body>
-    <div class="intro">
+    <div class="element">
       <h1>Welcome to the Democratic Party</h1>
-      <p>Choose the policies you'd like to campaign on:</p>
+      <p>
+        Choose the policies you'd like to campaign on. Policies from
+        <a
+          href="https://2020election.procon.org/view.source-summary-chart.php"
+          target="_blank"
+          >ProCon.</a
+        >
+        <br /><br />Leave blank if N/A or unsure:
+      </p>
+      <form>
+        <p>1. Should the US Ban Assault Weapons?</p>
+        <input type="radio" value="pro1" />
+        <label for="pro1">Pro</label>
+        <input type="radio" value="con1" />
+        <label for="con1">Con</label>
+        <p>2. Should the US Expand Its Use of Nuclear Power?</p>
+        <input type="radio" value="pro1" />
+        <label for="pro1">Pro</label>
+        <input type="radio" value="con1" />
+        <label for="con1">Con</label>
+        <p>3. Should Public Sector Employees Have the Right to Unionize?</p>
+        <input type="radio" value="pro1" />
+        <label for="pro1">Pro</label>
+        <input type="radio" value="con1" />
+        <label for="con1">Con</label>
+        <p>4. Should the Federal Government Provide Universal Childcare?</p>
+        <input type="radio" value="pro1" />
+        <label for="pro1">Pro</label>
+        <input type="radio" value="con1" />
+        <label for="con1">Con</label>
+        <p>5. Should Federal Taxes Be Increased?</p>
+        <input type="radio" value="pro1" />
+        <label for="pro1">Pro</label>
+        <input type="radio" value="con1" />
+        <label for="con1">Con</label>
+      </form>
       <button onclick="location.href='minimaleffects.html'" type="button">
         Campaign!
       </button>
@@ -35,6 +83,5 @@
     >
       Back
     </button>
-    <script src="script.js"></script>
   </body>
 </html>
