@@ -63,6 +63,7 @@ button:hover {
   line-height: 2rem;
   word-wrap: break-word;
   overflow-y: scroll;
+  height: 600px;
 }
 a {
   text-decoration: none;

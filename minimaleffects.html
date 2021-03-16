@@ -36,12 +36,6 @@
         height: 500px;
         overflow-y: scroll;
       }
-
-      .element {
-        width: 80%;
-        margin-top: 5;
-        height: 600px;
-      }
       em {
         font-style: normal;
         font-weight: 900;
@@ -68,7 +62,7 @@
         is weak. Sorry if you spent a lot of time picking your policies!
       </p>
       <p>
-        Additionally, according to the Minimal Effects Model, so much is already
+        According to the Minimal Effects Model, so much is already
         baked into the Presidential contest that campaigns have little impact on
         how people vote (<a
           href="https://www.washingtonpost.com/opinions/do-campaigns-really-change-voters-minds/2012/07/06/gJQAEljyRW_story.html"
@@ -79,8 +73,8 @@
       <p>
         Most election outcomes are determined by fundamentals such as partisan
         loyalties, the incumbent president's approval rating, and economic
-        growth. Since you've already won your party's nomination, voters during the
-        November Presidential election assume you're a reasonable candidate.
+        growth. Since you've already won your party's nomination, voters during
+        the November Presidential election assume you're a reasonable candidate.
       </p>
       <button class="show-modal">Try a Model Based on Fundamentals</button>
       <div class="modal hidden">
@@ -95,24 +89,34 @@
         </h1>
         <!--incumbent's net approval rating-->
         <p>
-          This model predicts the two-party popular vote based on 3 variables:<br>
+          This model predicts the two-party popular vote based on 3
+          variables:<br />
           <ol>
             <li><em>Incumbent President's popularity (NETAPP).</em> Measured by net approval rating at midyear. (Approval rating subtracted by disapproval rating). Positive net approval means their approval rating was higher.</li>
 
             <li><em>The state of the economy (G2GDP).</em> Measured by the annualized growth of real GDP in the 2nd quarter of election year.
             </li>
+
             <li><em>The time the
               incumbent party has been in office (TERM1INC).</em> Presence (1) or absence (0) of a first-term incumbent in the race</li>
+
+              
           </ol>
-          The output of the model produces <em>V</em>, which is the incumbent party's share of the two-party presidential vote, and <em>A</em> is a constant (in 2016, A was 47.26):  
-          <img src="model.png" style="width:100%; border:1px solid black;"><br>Thus, since the model calculates the incumbent party's share of the vote, the incumbent party is often disadvantaged in open-seat elections, since TERM1INC is 0. Hence the name "Time-for-change" 😄.
-<br><br>
-          On average across 6 elections from 1992
-          to 2008, the model missed the final results by only 1.7 percentage
-          points.<br />
+          The output of the model produces <em>V</em>, which is the incumbent
+          party's share of the two-party presidential vote, and <em>A</em> is a
+          constant (in 2016, A was 47.26):
+          <img
+            src="model.png"
+            style="width: 100%; border: 1px solid black"
+          /><br />Thus, since the model calculates the incumbent party's share
+          of the vote, the incumbent party is often disadvantaged in open-seat
+          elections, since TERM1INC is 0. Hence the name "Time-for-change" 😄.
+          <br /><br />
+          On average across 6 elections from 1992 to 2008, the model missed the
+          final results by only 1.7 percentage points.<br />
         </p>
         <div class="calculator">
-          <h3> Try it Out! </h3>
+          <h3>Try it Out!</h3>
           <label for="incumbentApprovalValue"
             >Incumbent President's net approval rating</label
           ><br />
@@ -155,7 +159,11 @@
           <button onclick="calculateWinner()" class="calculatebutton">
             Calculate
           </button>
-          <em><output id="actual">Incumbent share of the two-party presidential vote: </output></em>
+          <em
+            ><output id="actual"
+              >Incumbent share of the two-party presidential vote:
+            </output></em
+          >
         </div>
       </div>
       <div class="overlay hidden"></div>
@@ -178,26 +186,24 @@
         <h3>Electoral College</h3>
         <p>
           In the US, the Presidency is won through the Electoral College system,
-          which allots electoral votes to the 50 states based on population size.<img
-            src="electoralcollege.png"
-            style="width: 100%"
-          />
-          Most states (48/50) use a winner-take-all approach where the candidate that
+          which allots electoral votes to the 50 states based on population
+          size.<img src="electoralcollege.png" style="width: 100%" /> Most
+          states (48/50) use a winner-take-all approach where the candidate that
           wins the most votes in that state gets <i> all </i> of its electoral
-          votes. Maine and Nebraska use a district-based system that
-          allows their electoral votes to be split. In order for a candidate to
-          win, they must secure 270 of the 538 electoral votes. Thus, most
-          campaigns focus on battleground states, rather than Democratic or
-          Republican strongholds. Since most states follow a winner-take-all
-          approach, this also means that Presidents can win the electoral
-          college without winning the popular vote, which is the total number of
-          votes cast by voters nationwide.
+          votes. Maine and Nebraska use a district-based system that allows
+          their electoral votes to be split. In order for a candidate to win,
+          they must secure 270 of the 538 electoral votes. Thus, most campaigns
+          focus on battleground states, rather than Democratic or Republican
+          strongholds. Since most states follow a winner-take-all approach, this
+          also means that Presidents can win the electoral college without
+          winning the popular vote, which is the total number of votes cast by
+          voters nationwide.
         </p>
       </div>
       <div class="overlay hidden"></div>
       <p>
-        Additionally, when there are large discrepancies in campaign funding and resources,
-        campaigns can have a greater effect.
+        Additionally, when there are large discrepancies in campaign funding and
+        resources, campaigns can have a greater effect.
       </p>
     </div>
     <button
@@ -249,7 +255,9 @@
           0.543 * annualGDP +
           4.313 * incumbent;
         document.querySelector("#actual").value =
-          "Incumbent share of the two-party presidential vote: " + voteEq.toFixed(2) + "%";
+          "Incumbent share of the two-party presidential vote: " +
+          voteEq.toFixed(2) +
+          "%";
       }
     </script>
   </body>
