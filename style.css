@@ -33,7 +33,6 @@ button {
 }
 .backbutton {
   left: 0px;
-  position: absolute;
   bottom: 0px;
   background-color: transparent;
   margin: 10px;
@@ -59,11 +58,9 @@ button:hover {
   background-color: white;
   margin-top: 5%;
   width: 80%;
-  padding: 3%;
+  padding: 2%;
   line-height: 2rem;
-  word-wrap: break-word;
-  overflow-y: scroll;
-  height: 600px;
+  margin-bottom: 5%;
 }
 a {
   text-decoration: none;
